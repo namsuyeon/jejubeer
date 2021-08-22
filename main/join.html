@@ -1,0 +1,217 @@
+<header>
+    <div class="logo"><a href="index1.html"><b style="color: #1ecad3";>제주맥주</b></a></div>
+    <div class="user_info">
+        <a href="login.html">LOGIN</a>
+        <a href="join_agree.html">JOIN</a>
+    </div>
+</header>
+<nav class="clear">
+    <div>
+        <ul>
+            <li><a href="index1.html">EVENT</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="about_us.html">ABOUT US</a></li>
+            <li><a href="news.html">NEWS</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </div>
+</nav>
+<aside>
+    <div class="nav-btn">
+        <a href="#"><img src="./img/share.png" width="50"></a>
+    </div>
+    <div class="nav-gray-btn">
+        <a href="#"><img src="./img/up.png" width="50"></a>
+    </div>
+</aside>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <sript src="js/script.js"></sript>
+        <title></title>
+    </head>
+    <body>
+        <main>
+            <div>
+                <h1>JOIN</h1>
+                <p>안녕하세요. 제주맥주입니다.</p>
+            </div>
+            <div>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                <div id="signin" class="join-box">
+                    <input id="photo" name="photo" type="file">
+                </div>
+                <div id="signin" class="join-box">
+                    <input id="email" name="email" type="email" placeholder="이메일"><br>
+                    <input id="pass1" name="pass" type="password" placeholder="비밀번호"><br>
+                    <input id="pass2" type="password" placeholder="비밀번호 확인">
+                </div>
+                <div id="signin" class="join-box">
+                    <label class="sign" for="name">이름 <span>&centerdot;</span></label><br>
+                    <input id="name" name="name" type="text" placeholder="이름을(를) 입력하세요.">
+                </div>
+                <div id="signin" class="join-box">
+                    <label>성별 <span>&centerdot;</span></label><br>
+                    <input id="man" name="gender" type="radio" value="man">
+                    <label for="man">남자</label><br>
+                    <input id="woman" name="gender" type="radio" value="woman">
+                    <label for="woman">여자</label>
+                </div>
+                <div id="signin" class="join-box">
+                   <label class="sign" for="phone">연락처 <span>&centerdot;</span></label><br>
+                    <input id="phone" type="tel" placeholder="연락처">
+                </div>
+                <div id="signin" class="join-box">
+                    <label class="sign" for="address">주소 <span>&centerdot;</span></label><br>
+                    <input id="address1" type="text" placeholder="주소"><br>
+                    <input id="address2" type="text" placeholder="상세주소">
+                </div>
+                <div id="join-important" class="join-box-40">
+                    <label for="birthday">생년월일 <span>&centerdot;</span></label><br>
+                        <!-- BIRTH_YY -->
+                    <select id="bir_yy" name="bir_yy">
+                        <option>연</option>
+                        <script>
+                            for(var i=1900; i<=2021;i++){
+                                document.write('<option value="'+i+'">'+i+'</option>')
+                            }
+                        </script>
+                    </select>
+                    <!-- BIRTH_MM -->
+                    <select id="bir_mm" name="bir_mm">
+                        <option>월</option>
+                        <script>
+                            for(var i=1; i<=12;i++){
+                                document.write('<option value="'+i+'">'+i+'</option>')
+                            }
+                        </script>
+                    </select>
+                    <!-- BIRTH_DD -->
+                    <select id="bir_dd" name="bir_dd">
+                        <option>일</option>
+                        <script>
+                            for(var i=1; i<=31;i++){
+                                document.write('<option value="'+i+'">'+i+'</option>')
+                            }
+                        </script>
+                    </select>
+                </div>
+                <div id="signin" class="join-box">
+                    <input id="agree_terms" name="agree_terms" type="hidden">
+                    <input id="user_info_agree" name="user_info_agree" type="hidden">
+                    <input id="marketing_sms_agree" name="marketing_sms_agree" type="hidden">
+                    <input id="marketing_email_agree" name="marketing_email_agree" type="hidden">
+                    <button class="btn-shape white-font" type="button" onclick="formValidator()">가입하기</button>
+                    <script>
+                        let formValidator = function() {
+                            let email = document.getElementById('email').value;
+                            let password = document.getElementById('pass1').value;
+                            let passConfirm = document.getElementById('pass2').value;
+                            let name = document.getElementById('name').value;
+                            let phone = document.getElementById('phone').value;
+                            let address = document.getElementById('address1').value;
+                            let addressDetail = document.getElementById('address2').value;
+                            let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+
+                            if(!email) {
+                                alert('이메일을 입력하세요.');
+                                document.getElementById('email').focus();
+                                return;
+                            }
+                            if(!regExp.test(email)) {
+                                alert('이메일 형식이 아닙니다.');
+                                document.getElementById('email').value='';
+                                document.getElementById('email').focus();
+                                return;
+                            }
+                            if(!password) {
+                                alert('비밀번호를 입력하세요.');
+                                document.getElementById('pass1').focus();
+                                return;
+                            } else {
+                                if(password.length<6) {
+                                alert('비밀번호는 최소 6자리 이상 입력해야 합니다.');
+                                document.getElementById('pass1').value='';
+                                document.getElementById('pass2').value='';
+
+                                document.getElementById('pass1').focus();
+
+                                return;
+                            }
+                            if(password!=passConfirm) {
+                                alert('비밀번호가 서로 다릅니다.');
+                                document.getElementById('pass1').value='';
+                                document.getElementById('pass2').value='';
+
+                                document.getElementById('pass1').focus();
+
+                                return;
+                            }
+
+                            }
+                            if(!passConfirm) {
+                                alert('비밀번호 확인을 입력하세요.');
+                                document.getElementById('pass2').focus();
+                                return;
+                            } else {
+                            if(password.length<6) {
+                                alert('비밀번호는 최소 6자리 이상 입력해야 합니다.');
+                                document.getElementById('pass1').value='';
+                                document.getElementById('pass2').value='';
+
+                                document.getElementById('pass1').focus();
+
+                                return;
+                            }
+                            if(password!=passConfirm) {
+                                alert('비밀번호가 서로 다릅니다.');
+                                document.getElementById('pass1').value='';
+                                document.getElementById('pass2').value='';
+
+                                document.getElementById('pass1').focus();
+
+                                return;
+                            }
+                        }
+
+                            if(!name) {
+                                alert('이름을 입력하세요.');
+                                document.getElementById('name').focus();
+                                return;
+                            }
+                            if(!phone) {
+                                alert('전화번호를 입력하세요.');
+                                document.getElementById('phone').focus();
+                                return;
+                            }
+                            if(!address) {
+                                alert('주소를 입력하세요.');
+                                document.getElementById('address1').focus();
+                                return;
+                            }
+                            if(!addressDetail) {
+                                alert('상세주소를 입력하세요.');
+                                document.getElementById('address2').focus();
+                                return;
+                            }
+
+                        }
+                    </script>
+                </div>
+            </form>
+            </div>
+        </main>
+        <footer>
+            <div>
+                제주맥주 주식회사 대표이사<br>
+                본사) 본사 주소<br>
+                호스팅 제공자 XXX&nbsp;&nbsp;&nbsp;사업자등록번호 xxx-xx-xxxxx&nbsp;&nbsp;&nbsp;통신판매업신고번호 제xxxx-xxxx-xxxx호<br>
+                개인정보보호책임자 XXX&nbsp;&nbsp;&nbsp;고객센터 xx-xxxx-xxxx, xxxx@xxxx.cokr
+            </div>
+        </footer>
+    </body>
+</html>
